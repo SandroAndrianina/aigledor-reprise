@@ -1,0 +1,291 @@
+<%-- 
+    Document   : as-commande-analyse
+    Created on : 30 d�c. 2016, 04:57:15
+    Author     : Joe
+--%>
+<%@page import="utils.ConstanteAsync"%>
+<%@page import="vente.VenteDetailsLib"%>
+<%@page import="utilitaire.*"%>
+<%@page import="affichage.*"%>
+<%@page import="java.util.Calendar"%>
+<%@page import="magasin.Magasin"%>
+<%@ page import="produits.CategorieIngredient" %>
+<%@ page import="annexe.TypeProduit" %>
+<%@ page import="bean.TypeObjet" %>
+<%@ page import="modele.Modele" %>
+<%@ page import="java.util.LinkedHashMap" %>
+
+<%
+try {
+    VenteDetailsLib mvt = new VenteDetailsLib();
+    String nomTable = "VENTE_DETAILS_CPL_2_VISEE";
+    mvt.setNomTable(nomTable);
+    
+    String listeCrt[] = {"daty","idDevise","idDeviseLib","idCategorieLib","idProduitLib","idMagasin","idCategorie" ,"typeProduit","typeProduitLib", "idPoint", "idPointLib", "idprovince", "idprovincelib", "idModele", "idCategorieModele", "idSousCategorie", "montantTtcAr"};
+    String listeInt[] = {"daty", "montantTtcAr"};
+    String[] pourcentage = {};
+    String[] colGr = {"idProduitLib"};
+    String[] colGrCol = {"idDeviseLib"};
+//    String somDefaut[] = {"qte", "puTotal", "puRevient"};
+    String somDefaut[] = {"qte", "puTotal"};
+    
+    PageRechercheGroupe pr = new PageRechercheGroupe(mvt, request, listeCrt, listeInt, 3, colGr, somDefaut, pourcentage, colGr.length , somDefaut.length);
+    pr.setUtilisateur((user.UserEJB) session.getValue("u"));
+    pr.setLien((String) session.getValue("lien"));
+    String apreswhere = "";
+    String debutSem=Utilitaire.formatterDaty(Utilitaire.getDebutSemaine(Utilitaire.dateDuJourSql())) ;
+    if(request.getParameter("daty1")==null&&request.getParameter("daty2")==null)
+        apreswhere= "and daty >= TO_DATE('"+debutSem+"','DD/MM/YYYY') and daty <= TO_DATE('"+utilitaire.Utilitaire.dateDuJour()+"','DD/MM/YYYY')";
+    Calendar calendar = Calendar.getInstance();
+    int month = calendar.get(Calendar.MONTH) + 1; // January is 0
+    int year = calendar.get(Calendar.YEAR);
+    String order = "";
+    if(request.getParameter("order")!=null && request.getParameter("order").compareToIgnoreCase("")!=0){
+        order+= (" "+ request.getParameter("order"));
+    }
+    String[] grouper = new String[1];
+    if(request.getParameter("grouper")!=null && request.getParameter("grouper").compareToIgnoreCase("")!=0){
+        grouper[0]=request.getParameter("grouper");
+        pr.setColGroupeDefaut(grouper);
+    }
+    pr.setOrdre(order);
+    pr.setAWhere(apreswhere);
+
+    pr.getFormu().getChamp("daty1").setDefaut(debutSem);
+    pr.getFormu().getChamp("daty2").setDefaut(utilitaire.Utilitaire.dateDuJour());
+    pr.getFormu().getChamp("daty1").setLibelle("Date Min");
+    pr.getFormu().getChamp("daty2").setLibelle("Date max");
+    pr.getFormu().getChamp("montantTtcAr1").setLibelle("Montant TTC (Ar) min");
+    pr.getFormu().getChamp("montantTtcAr2").setLibelle("Montant TTC (Ar) max");
+    pr.getFormu().getChamp("idCategorieLib").setVisible(false);
+    pr.getFormu().getChamp("idDeviseLib").setVisible(false);
+    pr.getFormu().getChamp("idProduitLib").setLibelle("Produit");
+    pr.getFormu().getChamp("idCategorieModele").setLibelle("Cat&eacute;gorie Mod&egrave;le");
+    pr.getFormu().getChamp("idSousCategorie").setLibelle("Sous Cat&eacute;gorie Mod&egrave;le");
+    pr.getFormu().getChamp("idprovince").setLibelle("ID Province");
+    pr.getFormu().getChamp("idprovincelib").setLibelle("Province");
+
+
+    pr.getFormu().getChamp("typeProduitLib").setVisible(false);
+
+    String pageTitle = "Analyse des ventes selon le chiffre d'affaires";
+    String grouperParam = request.getParameter("grouper");
+    affichage.Champ[] liste =null;
+    if (grouperParam != null) {
+        liste = new affichage.Champ[2];
+        liste[0] = new Liste("iddevise",new caisse.Devise(),"val","id");
+        if (grouperParam.equals("idCategorieLib")) {
+            pageTitle = "Analyse des ventes par cat&eacute;gorie";
+            CategorieIngredient cat= new CategorieIngredient();
+            liste[1] = new Liste("idCategorie", cat, "VAL", "id");
+            pr.getFormu().getChamp("idMagasin").setVisible(false);
+        }
+        if (grouperParam.equals("idPointureLib")) {
+            pageTitle = "Analyse des ventes par pointure";
+            TypeObjet pointure= new TypeObjet();
+            pointure.setNomTable("POINTURE");
+            liste[1] = new Liste("pointure", pointure, "VAL", "id");
+        }
+        if (grouperParam.equals("idCouleurLib")) {
+            pageTitle = "Analyse des ventes par couleur";
+            TypeObjet couleur= new TypeObjet();
+            couleur.setNomTable("COULEUR");
+            liste[1] = new Liste("idCouleurLib", couleur, "VAL", "id");
+        }
+        if (grouperParam.equals("idMagasinLib")) {
+            pageTitle = "Analyse des ventes par magasin";
+            Magasin magasin = new Magasin();
+            magasin.setNomTable("magasin2");
+            liste[1] = new Liste("idMagasin",magasin,"val","id");
+            pr.getFormu().getChamp("idCategorie").setVisible(false);
+        }
+
+        if (grouperParam.equals("typeProduitLib")) {
+            pageTitle = "Analyse des ventes par type produit";
+            TypeProduit tp = new TypeProduit();
+            tp.setNomTable("TYPE_PRODUIT");
+            liste[1] = new Liste("typeProduit",tp,"val","id");
+        }
+
+        if (grouperParam.equals("idprovincelib")) {
+            pageTitle = "Analyse des ventes par zone";
+            TypeObjet pro = new TypeObjet();
+            pro.setNomTable("PROVINCE");
+            liste[1] = new Liste("idprovince",pro,"val","id");
+        }
+
+        if (grouperParam.equals("idModeleLib")) {
+            pageTitle = "Analyse des ventes par mod&egrave;le";
+            Modele mod = new Modele();
+            liste[1] = new Liste("idModele",mod,"libelle","id");
+        }
+
+        if (grouperParam.equals("idPointLib")) {
+            pageTitle = "Analyse des ventes par point";
+            TypeObjet p = new TypeObjet();
+            p.setNomTable("point");
+            liste[1] = new Liste("idPoint",p,"val","id");
+        }
+        if (grouperParam.equals("idCategorieModelLib")) {
+            pageTitle = "Analyse des ventes par cat&eacute;gorie mod&egrave;le";
+            TypeObjet p = new TypeObjet();
+            p.setNomTable("CATEGORIEMODELE");
+            liste[1] = new Liste("idCategorieModele",p,"val","id");
+        }
+        if (grouperParam.equals("idSousCategorieLib")) {
+            pageTitle = "Analyse des ventes par sous cat&eacute;gorie mod&egrave;le";
+            TypeObjet p = new TypeObjet();
+            p.setNomTable("SOUSCATEGORIEMODELE");
+            liste[1] = new Liste("idSousCategorie",p,"val","id");
+        }
+
+    }else{
+        liste = new affichage.Champ[1];
+        liste[0] = new Liste("iddevise",new caisse.Devise(),"val","id");
+        pr.getFormu().getChamp("idCategorie").setVisible(false);
+        pr.getFormu().getChamp("idMagasin").setVisible(false);
+    }
+    pr.getFormu().changerEnChamp(liste);
+    pr.getFormu().getChamp("idMagasin").setLibelle("Magasin");
+    pr.getFormu().getChamp("idCategorie").setLibelle("Cat&eacute;gorie");
+    pr.getFormu().getChamp("idDevise").setLibelle("Devise");
+    pr.getFormu().getChamp("idModele").setLibelle("Mod&egrave;le");
+    pr.getFormu().getChamp("idPoint").setLibelle("Point");
+    pr.getFormu().getChamp("idPointLib").setVisible(false);
+    pr.getFormu().getChamp("typeProduit").setLibelle("Type produit");
+    pr.setNpp(500);
+    String apres = "vente/vente-analyse.jsp";
+    String daty1,daty2;
+    if(request.getParameter("daty1") == null || request.getParameter("daty2") == null){
+        daty2 = utilitaire.Utilitaire.dateDuJour();
+        daty1 = debutSem;
+    }else{
+        daty1=request.getParameter("daty1");
+        daty2=request.getParameter("daty2");
+    }
+    LinkedHashMap<String, String[]> rubriquesAnalyse = new LinkedHashMap<>();
+    rubriquesAnalyse.put("Produit", new String[]{
+            "idProduitLib",
+            "idCategorieLib",
+            "typeProduitLib",
+            "idModeleLib",
+            "idCategorieModelLib",
+            "idSousCategorieLib"
+    });
+    rubriquesAnalyse.put("Finance", new String[]{"qte", "pu", "puTotal", "puRevient", "montanttotal", "montantTtcAr"});
+    rubriquesAnalyse.put("Zone", new String[]{"idprovincelib", "idPointLib","idMagasinLib"});
+    rubriquesAnalyse.put("Autre", new String[]{"idDeviseLib","daty", "mois", "annee"});
+
+    String[] colonnesSommeAutorisees = {
+            "qte", "pu", "puTotal", "puRevient", "montanttotal", "montantTtcAr"
+    };
+    pr.setRubriquesAnalyse(rubriquesAnalyse);
+    pr.setColonnesSommeAutorisees(colonnesSommeAutorisees);
+    pr.creerObjetPageCroise(colGrCol,pr.getLien()+"?but=vente/vente-details-liste.jsp&daty1="+daty1+"&daty2="+daty2);
+    String type = request.getParameter("grouper");
+    String titre = "Analyse des ventes par chiffre d'affaires";
+    String desce = "Analyse des ventes par chiffre d'affaires";
+    if (type != null && !type.trim().isEmpty()) {
+            if(type.compareToIgnoreCase("idMagasinLib")==0){
+                titre = "Analyse des ventes par magasin";
+                desce = "Analyse des ventes par magasin";
+            }
+            if(type.compareToIgnoreCase("idCategorieLib")==0){
+                titre = "Analyse des ventes par cat&eacute;gorie";
+                desce = "Analyse des ventes par cat&eacute;gorie";
+            }
+            if(type.compareToIgnoreCase("idPointureLib")==0){
+                titre = "Analyse des ventes par pointure";
+                desce = "Analyse des ventes par pointure";
+            }
+            if(type.compareToIgnoreCase("idCouleurLib")==0){
+                titre = "Analyse des ventes par couleur";
+                desce = "Analyse des ventes par couleur";
+            }
+            if(type.compareToIgnoreCase("typeProduitLib")==0){
+                titre = "Analyse des ventes par type produit";
+                desce = "Analyse des ventes par type produit";
+            }
+            if(type.compareToIgnoreCase("idPointLib")==0){
+                titre = "Analyse des ventes par point";
+                desce = "Analyse des ventes par point";
+            }
+            if(type.compareToIgnoreCase("idModeleLib")==0){
+                titre = "Analyse des ventes par mod&egrave;le";
+                 desce = "Analyse des ventes par mod&egrave;le";            }
+            if(type.compareToIgnoreCase("idCategorieModelLib")==0){
+                titre = "Analyse des ventes par cat&eacute;gorie mod&egrave;le";
+                desce = "Analyse des ventes par cat&eacute;gorie mod&egrave;le";
+            }
+            if(type.compareToIgnoreCase("idSousCategorieLib")==0){
+                  titre = "Analyse des ventes par sous cat&eacute;gorie mod&egrave;le";
+                desce = "Analyse des ventes par sous cat&eacute;gorie mod&egrave;le";           }
+          if(type.compareToIgnoreCase("idprovincelib")==0 || type.compareToIgnoreCase("idprovince")==0){
+                titre = "Analyse des ventes par zone";
+                desce = "Analyse des ventes par zone";
+            }
+            apres += "&grouper="+type ;
+    }
+    pr.setApres(apres);
+     
+    
+
+%>
+<div class="content-wrapper">
+    <section class="content-header">
+        <h1 id="page-title"><%= pageTitle %></h1>
+    </section>
+    <section class="content">
+        <form action="<%=pr.getLien()%>?but=<%=apres%>" method="post" name="analyse" id="analyse">
+            <%out.println(pr.getFormu().getHtmlEnsemble());%>
+        </form>
+        <ul>
+            <li>La premi&egrave;re ligne correspond &agrave; la quantit&eacute;</li>
+            <li>La deuxi&egrave;me ligne correspond au montant total</li>
+        </ul>
+<%--        <%out.println(pr.getDragAndDropColumnChangerHtml("analyse"));%>--%>
+           <%
+            String lienTableau[] = {};
+            pr.getTableau().setLien(lienTableau);
+            pr.getTableau().setColonneLien(somDefaut);%>
+        <br>
+        <%
+            out.println(pr.getHtmlWithEvaluation(ConstanteAsync.API_URL, ConstanteAsync.API_KEY, titre, desce));
+            out.println(pr.getTableau().getHtml());
+            out.println(pr.getBasPage());
+        %>
+    </section>
+</div>
+<%
+    }catch(Exception e){
+        e.printStackTrace();
+    }
+%>
+<script>
+    function changerDesignation() {
+        document.analyse.submit();
+    }
+    $(document).ready(function() {
+        $('.box table tr').each(function() {
+            $(this).find('td:last, th:last').hide();
+        });
+    });
+    function alignTableCells() {
+        const tbody = document.querySelector('tbody');
+        if (!tbody) return;
+
+        const rows = tbody.querySelectorAll('tr');
+
+        rows.forEach((row) => {
+            const cells = row.querySelectorAll('td');
+            if (cells.length > 0) {
+                cells[0].style.textAlign = 'center';
+                cells[0].style.verticalAlign = 'middle';
+            }
+            if (cells.length > 1) {
+                cells[1].style.textAlign = 'right';
+            }
+        });
+    }
+    document.addEventListener('DOMContentLoaded', alignTableCells);
+</script>

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>POS APJ - Test Runner Complet</title>
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; padding: 20px; background: #f8fafc; }
+        .container { max-width: 900px; margin: 0 auto; background: white; padding: 25px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
+    </style>
+    <!-- jQuery nécessaire pour la manipulation du DOM de test -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js?v=85"></script>
+</head>
+<body>
+<div class="container">
+    <h1>🧪 POS APJ - Console de Tests Anti-Régression</h1>
+    <p>Validation automatisée de l'ensemble des modules POS avant déploiement.</p>
+
+    <!-- SANDBOX DOM (Simule l'environnement réél du POS) -->
+    <div id="sandbox-dom" style="display:none;">
+        <!-- Header Search -->
+        <input id="idProduit_libelle" value="" />
+        <input id="idProduit" value="" />
+
+        <!-- Récapitulatif Totaux -->
+        <span id="totalGeneral">15 000 Ar</span>
+        <input id="totalGeneralInput" value="15000" />
+        <span id="montantFacture">15 000 Ar</span>
+        <span id="montantArrondiEspeces">15 000 Ar</span>
+        <span id="recapSousTotal">15 000 Ar</span>
+        <span id="recapRemises">0 Ar</span>
+        <span id="montantPayerTexte">0 Ar</span>
+        <span id="montantRetourner">0 Ar</span>
+        <input id="aretourner" value="0" />
+
+        <!-- Champs des 8 Modes de Paiement -->
+        <input id="valeurEspece" value="" />
+        <input id="refMvola" value="" /><input id="montantMvola" value="" />
+        <input id="refOrange" value="" /><input id="montantOrange" value="" />
+        <input id="refAirtel" value="" /><input id="montantAirtel" value="" />
+        <input id="refCheque" value="" /><input id="montantCheque" value="" />
+        <input id="refVisa" value="" /><input id="montantVisa" value="" />
+        <input id="refBOA" value="" /><input id="montantBOA" value="" />
+        <input id="refCarte" value="" /><input id="montantCarte" value="" />
+
+        <button class="btn-primary btn-large">Payer</button>
+
+        <!-- Table Panier -->
+        <div id="formTableContainer">
+            <div id="butfillejsp">
+                <table>
+                    <thead>
+                    <tr><th>Photo</th><th>Article</th><th>Quantité</th><th>Montant</th></tr>
+                    </thead>
+                    <tbody id="ajout_multiple_ligne">
+                    <tr id="ligne-multiple-0" class="d-none">
+                        <td><input name="photo_0" value="" /></td>
+                        <td><input name="designation_0" id="designation_0" value="Article Test" /></td>
+                        <td><input name="qte_0" id="qte_0" value="1" /></td>
+                        <td><input name="pvTva_0" id="pvTva_0" value="15000" /></td>
+                        <td><input name="remiseMontant_0" id="remiseMontant_0" value="0" /></td>
+                        <td><input name="montant_0" id="montant_0" value="15000" /></td>
+                        <td><input name="unite_0" id="unite_0" value="UNT00001" /></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div id="clavierContainer" class="d-none"></div>
+    </div>
+
+    <!-- SANDBOX VISIBLE zone paiement (pour tests de navigation) -->
+    <div class="d-flex vente-directe-right-container" id="test-payment-zone">
+        <input type="hidden" id="multiplePaymentInput" value="false" />
+        <label class="toggle-button link">
+            <input type="checkbox" id="multiple-payment">
+        </label>
+        <div class="paiement-container">
+            <div class="toggle-container">
+                <label class="toggle-button active"><input type="radio" name="payment-method" value="especes" checked></label>
+                <label class="toggle-button"><input type="radio" name="payment-method" value="cheque"></label>
+                <label class="toggle-button"><input type="radio" name="payment-method" value="mvola"></label>
+            </div>
+        </div>
+        <div class="input-container">
+            <div class="form-input paiement-section" data-mode="especes">
+                <input class="form-control" id="valeurEspece" name="valeurEspece" value="" />
+            </div>
+        </div>
+    </div>
+
+    <div id="test-results"></div>
+</div>
+
+<!-- 1. Chargement des 7 modules JS de production -->
+<script>window.APJKeyboardAutoInit = false; window.isKeyboardMode = true;</script>
+<script src="../pos/pos-select-keyboard.js?v=85"></script>
+<script src="../pos/pos-core.js?v=85"></script>
+<script src="../pos/pos-basket-handlers.js?v=codal-parity-2"></script>
+<script src="../pos/pos-payment.js?v=codal-parity-1"></script>
+<script src="../pos/pos-ui-handlers.js?v=85"></script>
+<script src="../pos/pos-hardware-handlers.js?v=85"></script>
+<script src="../pos/pos-events.js?v=codal-parity-1"></script>
+<script src="../pos/pos-keyboard.js?v=controller-1"></script>
+<script src="../pos/pos-cash-keyboard.js?v=bill-on-intent-1"></script>
+<script src="../pos/pos-page-keyboard.js?v=controller-1"></script>
+<script src="../apj-keyboard.js?v=default-off-1"></script>
+
+<!-- 2. Chargement du Moteur de Test -->
+<script src="pos-test-runner.js?v=85"></script>
+
+<!-- 3. Chargement des Suites de Test -->
+<script src="suites/test-core.js?v=85"></script>
+<script src="suites/test-basket.js?v=85"></script>
+<script src="suites/test-payment.js?v=runner-fix-1"></script>
+<script src="suites/test-ui.js?v=85"></script>
+<script src="suites/test-hardware.js?v=85"></script>
+<script src="suites/test-keyboard.js?v=runner-fix-1"></script>
+<script src="suites/test-cash-keyboard.js?v=bill-on-intent-1"></script>
+<script src="suites/test-page-keyboard.js?v=85"></script>
+<script src="suites/test-select-keyboard.js?v=85"></script>
+<script src="suites/test-apj-keyboard.js?v=cash-bill-intent-1"></script>
+<script src="suites/test-codal-parity.js?v=2"></script>
+
+<!-- 4. Lancement automatique -->
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        POSTestRunner.runAll();
+    });
+</script>
+</body>
+</html>

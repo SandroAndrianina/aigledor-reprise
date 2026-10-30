@@ -1,0 +1,646 @@
+.
+├── bdd
+│   ├── 2025
+│   │   ├── 2025-12-09
+│   │   ├── artisanat
+│   │   ├── rh-paie
+│   │   │   ├── 2025-06
+│   │   │   ├── 2025-07
+│   │   │   ├── 2025-08
+│   │   │   ├── integration-paie
+│   │   │   └── socobis-paie
+│   │   ├── socobis
+│   │   │   ├── MP
+│   │   │   ├── Maintenance
+│   │   │   ├── Stock
+│   │   │   ├── achat
+│   │   │   ├── compta
+│   │   │   ├── compteur
+│   │   │   ├── donnees
+│   │   │   ├── fabrication
+│   │   │   ├── menu
+│   │   │   └── vente
+│   │   ├── spoon
+│   │   └── vaniala
+│   │       └── compta
+│   ├── 2026
+│   │   ├── 2026-01-14
+│   │   ├── 2026-01-29
+│   │   ├── 2026-04-13
+│   │   ├── 2026-05
+│   │   │   ├── 2026-05-04
+│   │   │   ├── 2026-05-05
+│   │   │   ├── 2026-05-11
+│   │   │   ├── 2026-05-12
+│   │   │   ├── 2026-05-13
+│   │   │   ├── 2026-05-15
+│   │   │   ├── 2026-05-18
+│   │   │   ├── 2026-05-20
+│   │   │   ├── 2026-05-22
+│   │   │   └── 2026-05-28
+│   │   ├── 2026-06
+│   │   │   ├── 2025-06-17
+│   │   │   ├── 2026-05-29
+│   │   │   ├── 2026-06-01
+│   │   │   ├── 2026-06-02
+│   │   │   ├── 2026-06-04
+│   │   │   ├── 2026-06-10
+│   │   │   ├── 2026-06-11
+│   │   │   ├── 2026-06-15
+│   │   │   ├── 2026-06-16
+│   │   │   ├── 2026-06-17
+│   │   │   ├── 2026-06-18
+│   │   │   ├── 2026-06-19
+│   │   │   ├── 2026-06-22
+│   │   │   ├── 2026-06-23
+│   │   │   ├── 2026-06-24
+│   │   │   ├── 2026-06-25
+│   │   │   ├── 2026-06-29
+│   │   │   └── 2026-06-30
+│   │   ├── 2026-06-15
+│   │   ├── 2026-07
+│   │   │   ├── 2026-07-06
+│   │   │   ├── 2026-07-07
+│   │   │   ├── 2026-07-08
+│   │   │   ├── 2026-07-13
+│   │   │   ├── 2026-07-15
+│   │   │   ├── 2026-07-17
+│   │   │   ├── 2026-07-18
+│   │   │   ├── 2026-07-20
+│   │   │   ├── 2026-07-21
+│   │   │   ├── 2026-07-22
+│   │   │   ├── 2026-07-27
+│   │   │   ├── 2026-07-28
+│   │   │   ├── 2026-07-29
+│   │   │   └── 2026-07-30
+│   │   ├── 2026-08
+│   │   │   ├── 2026-08-03
+│   │   │   ├── 2026-08-04
+│   │   │   └── 2026-08-05
+│   │   ├── 2026-09
+│   │   │   └── 2026-09-29
+│   │   ├── 2026-10
+│   │   │   ├── 2026-10-23
+│   │   │   └── 2026-10-27
+│   │   ├── Maintenance
+│   │   ├── achat
+│   │   │   └── 2026-05
+│   │   ├── compta
+│   │   │   └── menu
+│   │   ├── correction-2026-04
+│   │   │   ├── 2026-04-29
+│   │   │   └── 2026-04-30
+│   │   ├── production
+│   │   ├── rh
+│   │   │   ├── 2026-01
+│   │   │   ├── 2026-02
+│   │   │   ├── 2026-03
+│   │   │   ├── 2026-04
+│   │   │   ├── 2026-05
+│   │   │   └── 2026-06
+│   │   └── vente
+│   │       └── menu
+│   ├── 2026-01
+│   │   └── 2026-01-30
+│   ├── 2026-02
+│   │   ├── 2026-02-03
+│   │   ├── 2026-02-04
+│   │   ├── 2026-02-05
+│   │   ├── 2026-02-09
+│   │   ├── 2026-02-10
+│   │   ├── 2026-02-11
+│   │   ├── 2026-02-16
+│   │   ├── 2026-02-17
+│   │   ├── 2026-02-19
+│   │   ├── 2026-02-23
+│   │   └── 2026-02-24
+│   ├── 2026-03
+│   ├── 2026-04
+│   ├── 2026-05
+│   │   ├── 2026-05-21
+│   │   └── 2026-05-22
+│   ├── 2026-06
+│   │   ├── 2026-06-17
+│   │   ├── 2026-06-23
+│   │   ├── 2026-06-24
+│   │   └── 2026-06-29
+│   ├── 2026-07
+│   │   ├── 2026-07-13
+│   │   ├── 2026-07-20
+│   │   ├── 2026-07-23
+│   │   ├── 2026-07-24
+│   │   ├── 2026-07-27
+│   │   ├── 2026-07-28
+│   │   ├── 2026-07-29
+│   │   └── 2026-07-30
+│   ├── 2026-08
+│   └── postgres
+│       └── 2026
+│           └── 2026-10
+├── bdd-async
+│   ├── 2026
+│   │   ├── 2026-07
+│   │   │   ├── 2026-07-01
+│   │   │   ├── 2026-07-02
+│   │   │   ├── 2026-07-03
+│   │   │   ├── 2026-07-06
+│   │   │   ├── 2026-07-13
+│   │   │   ├── 2026-07-14
+│   │   │   ├── 2026-07-15
+│   │   │   ├── 2026-07-16
+│   │   │   ├── 2026-07-17
+│   │   │   ├── 2026-07-18
+│   │   │   ├── 2026-07-20
+│   │   │   ├── 2026-07-22
+│   │   │   ├── 2026-07-23
+│   │   │   ├── 2026-07-24
+│   │   │   ├── 2026-07-26
+│   │   │   ├── 2026-07-27
+│   │   │   ├── 2026-07-28
+│   │   │   ├── 2026-07-29
+│   │   │   ├── 2026-07-30
+│   │   │   ├── 2026-07-31
+│   │   │   ├── 2027-07-06
+│   │   │   └── 2027-07-29
+│   │   ├── 2026-08
+│   │   │   ├── 2026-08-03
+│   │   │   ├── 2026-08-04
+│   │   │   ├── 2026-08-05
+│   │   │   ├── 2026-08-06
+│   │   │   └── 2026-08-07
+│   │   └── 2026-10
+│   │       ├── 2026-10-01
+│   │       └── 2026-10-05
+│   └── postgres
+│       └── 2026
+│           └── 2026-10
+├── build-file
+│   ├── ear
+│   ├── lib
+│   ├── socobis_jar
+│   │   ├── affichage
+│   │   ├── annexe
+│   │   │   └── src
+│   │   ├── avoir
+│   │   ├── budget
+│   │   ├── caisse
+│   │   ├── calculBesoin
+│   │   ├── change
+│   │   ├── charge
+│   │   ├── cheque
+│   │   ├── client
+│   │   ├── compteur
+│   │   ├── configuration
+│   │   ├── couleur
+│   │   ├── dashboard
+│   │   ├── declaration
+│   │   ├── demande
+│   │   ├── depense
+│   │   ├── encaissement
+│   │   ├── entretien
+│   │   ├── equivalence
+│   │   ├── etatInspection
+│   │   ├── fabrication
+│   │   │   └── equipe
+│   │   ├── facture
+│   │   │   └── tr
+│   │   ├── faturefournisseur
+│   │   ├── fichier
+│   │   ├── filemanager
+│   │   ├── inventaire
+│   │   ├── jauge
+│   │   ├── java
+│   │   │   └── resources
+│   │   ├── machine
+│   │   ├── magasin
+│   │   ├── maintenance
+│   │   │   ├── configuration
+│   │   │   ├── etats
+│   │   │   ├── inspection
+│   │   │   ├── planning
+│   │   │   ├── ressources
+│   │   │   ├── tempOuverture
+│   │   │   ├── tranche
+│   │   │   ├── travaux
+│   │   │   └── utils
+│   │   ├── mg
+│   │   │   └── cnaps
+│   │   ├── modele
+│   │   ├── onBoarding
+│   │   ├── ordonnerpaiement
+│   │   ├── paie
+│   │   │   ├── absence
+│   │   │   ├── accident
+│   │   │   ├── analyse
+│   │   │   ├── annexe
+│   │   │   ├── archive
+│   │   │   ├── avance
+│   │   │   ├── avancement
+│   │   │   ├── budget
+│   │   │   ├── cantine
+│   │   │   ├── cartographie
+│   │   │   ├── categorie
+│   │   │   ├── cnaps
+│   │   │   ├── competence
+│   │   │   ├── configuration
+│   │   │   ├── conge
+│   │   │   ├── contrat
+│   │   │   ├── cv
+│   │   │   ├── demande
+│   │   │   ├── ecriture
+│   │   │   ├── edition
+│   │   │   ├── elementpaie
+│   │   │   ├── employe
+│   │   │   ├── evaluation
+│   │   │   ├── formateur
+│   │   │   ├── formation
+│   │   │   ├── frais
+│   │   │   ├── generique
+│   │   │   ├── hs
+│   │   │   ├── irsa
+│   │   │   ├── jasper
+│   │   │   ├── log
+│   │   │   ├── node
+│   │   │   ├── onBoarding
+│   │   │   ├── ostie
+│   │   │   ├── permission
+│   │   │   ├── pointage
+│   │   │   ├── poste
+│   │   │   ├── recrutement
+│   │   │   ├── sanction
+│   │   │   └── service
+│   │   ├── paiement
+│   │   ├── paramCompta
+│   │   ├── personnel
+│   │   ├── pertegain
+│   │   ├── piece
+│   │   ├── pointage
+│   │   ├── pompe
+│   │   ├── poste
+│   │   ├── prelevement
+│   │   ├── prevision
+│   │   │   └── mapping
+│   │   ├── produits
+│   │   ├── proforma
+│   │   ├── rapport
+│   │   ├── rapprochement
+│   │   ├── remise
+│   │   ├── rh
+│   │   │   └── pointage
+│   │   ├── ristourne
+│   │   ├── societe
+│   │   ├── stat
+│   │   ├── stock
+│   │   ├── synchronisation
+│   │   │   ├── utilitaire
+│   │   │   └── utils
+│   │   ├── tableaudebord
+│   │   ├── test
+│   │   │   └── ventedirecte
+│   │   ├── typesanction
+│   │   ├── uploadbean
+│   │   ├── user
+│   │   ├── utilisateursocobis
+│   │   ├── utilitaire
+│   │   ├── utils
+│   │   │   └── csv
+│   │   ├── vente
+│   │   │   └── stat
+│   │   └── venteLubrifiant
+│   └── socobis_war
+│       ├── META-INF
+│       │   └── apj
+│       ├── WEB-INF
+│       │   ├── META-INF
+│       │   └── lib
+│       ├── apjplugins
+│       ├── assets
+│       │   ├── audio
+│       │   ├── calendar
+│       │   ├── css
+│       │   ├── fonts
+│       │   ├── img
+│       │   └── js
+│       ├── bootstrap
+│       │   ├── css
+│       │   ├── fonts
+│       │   └── js
+│       ├── chartPlugins
+│       ├── pages
+│       │   ├── Chatbot
+│       │   ├── achat
+│       │   ├── analyse
+│       │   ├── annexe
+│       │   ├── avoir
+│       │   ├── bondecommande
+│       │   ├── bondelivraison
+│       │   ├── bondelivraison-client
+│       │   ├── budget
+│       │   ├── caisse
+│       │   ├── cantine
+│       │   ├── categorieingredient
+│       │   ├── change
+│       │   ├── cheque
+│       │   ├── choix
+│       │   ├── client
+│       │   ├── commande
+│       │   ├── compta
+│       │   ├── compteur
+│       │   ├── cv
+│       │   ├── dashboard
+│       │   ├── declaration
+│       │   ├── demande
+│       │   ├── depense
+│       │   ├── elements
+│       │   ├── encaissement
+│       │   ├── entretient
+│       │   ├── essai
+│       │   ├── etatInspection
+│       │   ├── etatMachine
+│       │   ├── fabrication
+│       │   ├── facture
+│       │   ├── facturefournisseur
+│       │   ├── filemanager
+│       │   ├── fournisseur
+│       │   ├── graphe
+│       │   ├── historique
+│       │   ├── inspection
+│       │   ├── inventaire
+│       │   ├── jauge
+│       │   ├── ligne
+│       │   ├── magasin
+│       │   ├── maintenance
+│       │   ├── modele
+│       │   ├── notification
+│       │   ├── onBoarding
+│       │   ├── paie
+│       │   ├── personnel
+│       │   ├── pertegain
+│       │   ├── pompe
+│       │   ├── popup
+│       │   ├── poste
+│       │   ├── prelevement
+│       │   ├── prevision
+│       │   ├── process
+│       │   ├── produits
+│       │   ├── rapprochement
+│       │   ├── rh
+│       │   ├── ristourne
+│       │   ├── societe
+│       │   ├── stat
+│       │   ├── stock
+│       │   ├── synchronisation
+│       │   ├── tableaudebord
+│       │   ├── tempsOuverture
+│       │   ├── test
+│       │   ├── typesanction
+│       │   ├── utilisateur
+│       │   ├── vente
+│       │   └── venteLubrifiant
+│       ├── plugins
+│       │   ├── PDFObject
+│       │   ├── bootstrap-slider
+│       │   ├── bootstrap-wysihtml5
+│       │   ├── chartjs
+│       │   ├── ckeditor
+│       │   ├── colorpicker
+│       │   ├── datatables
+│       │   ├── datepicker
+│       │   ├── daterangepicker
+│       │   ├── fastclick
+│       │   ├── flot
+│       │   ├── font-awesome-4.4.0
+│       │   ├── font-awesome-master
+│       │   ├── fullcalendar
+│       │   ├── iCheck
+│       │   ├── input-mask
+│       │   ├── ionicons-2.0.1
+│       │   ├── ionslider
+│       │   ├── jQuery
+│       │   ├── jQuery-Plugin-For-Horizontal
+│       │   ├── jQueryUI
+│       │   ├── jvectormap
+│       │   ├── knob
+│       │   ├── morris
+│       │   ├── pace
+│       │   ├── parsley
+│       │   ├── prism
+│       │   ├── select2
+│       │   ├── slimScroll
+│       │   ├── sparkline
+│       │   └── timepicker
+│       └── report
+├── codebar-generator
+│   ├── bin
+│   │   └── META-INF
+│   └── lib
+├── control
+├── google-adk
+│   └── asyncAgent
+│       └── __pycache__
+├── socobis-ejb
+│   ├── src
+│   │   ├── conf
+│   │   ├── java
+│   │   │   ├── affichage
+│   │   │   ├── annexe
+│   │   │   ├── avoir
+│   │   │   ├── budget
+│   │   │   ├── caisse
+│   │   │   ├── calculBesoin
+│   │   │   ├── change
+│   │   │   ├── charge
+│   │   │   ├── cheque
+│   │   │   ├── client
+│   │   │   ├── compteur
+│   │   │   ├── configuration
+│   │   │   ├── couleur
+│   │   │   ├── dashboard
+│   │   │   ├── declaration
+│   │   │   ├── demande
+│   │   │   ├── depense
+│   │   │   ├── encaissement
+│   │   │   ├── entretien
+│   │   │   ├── equivalence
+│   │   │   ├── etatInspection
+│   │   │   ├── fabrication
+│   │   │   ├── facture
+│   │   │   ├── faturefournisseur
+│   │   │   ├── fichier
+│   │   │   ├── filemanager
+│   │   │   ├── inventaire
+│   │   │   ├── jauge
+│   │   │   ├── machine
+│   │   │   ├── magasin
+│   │   │   ├── maintenance
+│   │   │   ├── mg
+│   │   │   ├── modele
+│   │   │   ├── onBoarding
+│   │   │   ├── ordonnerpaiement
+│   │   │   ├── paie
+│   │   │   ├── paiement
+│   │   │   ├── paramCompta
+│   │   │   ├── personnel
+│   │   │   ├── pertegain
+│   │   │   ├── piece
+│   │   │   ├── pompe
+│   │   │   ├── poste
+│   │   │   ├── prelevement
+│   │   │   ├── prevision
+│   │   │   ├── produits
+│   │   │   ├── proforma
+│   │   │   ├── rapport
+│   │   │   ├── rapprochement
+│   │   │   ├── remise
+│   │   │   ├── resources
+│   │   │   ├── rh
+│   │   │   ├── ristourne
+│   │   │   ├── societe
+│   │   │   ├── stat
+│   │   │   ├── stock
+│   │   │   ├── synchronisation
+│   │   │   ├── tableaudebord
+│   │   │   ├── test
+│   │   │   ├── typesanction
+│   │   │   ├── uploadbean
+│   │   │   ├── user
+│   │   │   ├── utilisateurstation
+│   │   │   ├── utilitaire
+│   │   │   ├── utils
+│   │   │   ├── vente
+│   │   │   └── venteLubrifiant
+│   │   └── ressources
+│   │       └── prompts
+│   └── test
+│       └── qrcode
+│           └── generator
+└── socobis-war
+    ├── src
+    │   ├── conf
+    │   └── java
+    │       ├── filemanager
+    │       ├── servlet
+    │       ├── station
+    │       └── uploadbean
+    └── web
+        ├── WEB-INF
+        │   └── META-INF
+        ├── apjplugins
+        ├── assets
+        │   ├── audio
+        │   ├── calendar
+        │   ├── css
+        │   ├── fonts
+        │   ├── img
+        │   └── js
+        ├── bootstrap
+        │   ├── css
+        │   ├── fonts
+        │   └── js
+        ├── chartPlugins
+        ├── pages
+        │   ├── Chatbot
+        │   ├── achat
+        │   ├── analyse
+        │   ├── annexe
+        │   ├── avoir
+        │   ├── bondecommande
+        │   ├── bondelivraison
+        │   ├── bondelivraison-client
+        │   ├── budget
+        │   ├── caisse
+        │   ├── cantine
+        │   ├── categorieingredient
+        │   ├── change
+        │   ├── cheque
+        │   ├── choix
+        │   ├── client
+        │   ├── commande
+        │   ├── compta
+        │   ├── compteur
+        │   ├── cv
+        │   ├── dashboard
+        │   ├── declaration
+        │   ├── demande
+        │   ├── depense
+        │   ├── elements
+        │   ├── encaissement
+        │   ├── entretient
+        │   ├── essai
+        │   ├── etatInspection
+        │   ├── etatMachine
+        │   ├── fabrication
+        │   ├── facture
+        │   ├── facturefournisseur
+        │   ├── filemanager
+        │   ├── fournisseur
+        │   ├── graphe
+        │   ├── historique
+        │   ├── inspection
+        │   ├── inventaire
+        │   ├── jauge
+        │   ├── ligne
+        │   ├── magasin
+        │   ├── maintenance
+        │   ├── modele
+        │   ├── notification
+        │   ├── onBoarding
+        │   ├── paie
+        │   ├── personnel
+        │   ├── pertegain
+        │   ├── pompe
+        │   ├── popup
+        │   ├── poste
+        │   ├── prelevement
+        │   ├── prevision
+        │   ├── process
+        │   ├── produits
+        │   ├── rapprochement
+        │   ├── rh
+        │   ├── ristourne
+        │   ├── societe
+        │   ├── stat
+        │   ├── stock
+        │   ├── synchronisation
+        │   ├── tableaudebord
+        │   ├── tempsOuverture
+        │   ├── test
+        │   ├── typesanction
+        │   ├── utilisateur
+        │   ├── vente
+        │   └── venteLubrifiant
+        ├── plugins
+        │   ├── PDFObject
+        │   ├── bootstrap-slider
+        │   ├── bootstrap-wysihtml5
+        │   ├── chartjs
+        │   ├── ckeditor
+        │   ├── colorpicker
+        │   ├── datatables
+        │   ├── datepicker
+        │   ├── daterangepicker
+        │   ├── fastclick
+        │   ├── flot
+        │   ├── font-awesome-4.4.0
+        │   ├── font-awesome-master
+        │   ├── fullcalendar
+        │   ├── iCheck
+        │   ├── input-mask
+        │   ├── ionicons-2.0.1
+        │   ├── ionslider
+        │   ├── jQuery
+        │   ├── jQuery-Plugin-For-Horizontal
+        │   ├── jQueryUI
+        │   ├── jvectormap
+        │   ├── knob
+        │   ├── morris
+        │   ├── pace
+        │   ├── parsley
+        │   ├── prism
+        │   ├── select2
+        │   ├── slimScroll
+        │   ├── sparkline
+        │   └── timepicker
+        └── report
+
+644 directories

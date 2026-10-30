@@ -1,0 +1,8 @@
+.DS_Store
+build-file/socobis_jar/
+build-file/socobis_war/
+build-file/ear/
+socobis-ejb/build/
+**/__pycache__/
+bdd/
+bdd-async/

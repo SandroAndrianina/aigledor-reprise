@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="facture_vente_mere_fille_subreport1" pageWidth="154" pageHeight="555" orientation="Landscape" columnWidth="154" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="46e067aa-ac7b-4d91-8e14-944bdcb7dee6">
+	<property name="ireport.zoom" value="2.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="idvente" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select * from VENTE_DETAILS_CPL]]>
+	</queryString>
+	<field name="idCaisselib" class="java.lang.String"/>
+	<field name="reste" class="java.lang.Double"/>
+	<field name="debit" class="java.lang.Double"/>
+	<field name="credit" class="java.lang.Double"/>
+	<field name="montantDernierReport" class="java.lang.Double"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="20" splitType="Stretch">
+			<printWhenExpression><![CDATA[$V{PAGE_NUMBER} == 1]]></printWhenExpression>
+			<staticText>
+				<reportElement x="0" y="0" width="153" height="20" uuid="4b4aa026-fce6-4da1-82cc-ccee64522f03"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Dashed"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Etat de caisse ]]></text>
+			</staticText>
+		</band>
+	</title>
+	<detail>
+		<band height="61" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="12" width="153" height="48" uuid="1e96ec51-2ead-4b4e-af0c-2892c8d629f9"/>
+				<box>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="36" width="64" height="12" uuid="30a94ff0-fdcd-4919-bde5-8bfde948e6f9"/>
+				<textElement>
+					<font size="8"/>
+					<paragraph leftIndent="4"/>
+				</textElement>
+				<text><![CDATA[Sortie]]></text>
+			</staticText>
+			<textField pattern="#,##0.00" isBlankWhenNull="true">
+				<reportElement x="64" y="12" width="89" height="12" uuid="2372da43-2e67-437b-80f0-6fc86d050055"/>
+				<box rightPadding="5"/>
+				<textElement textAlignment="Right">
+					<font size="8" isBold="true"/>
+					<paragraph rightIndent="2"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{montantDernierReport}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00" isBlankWhenNull="true">
+				<reportElement x="64" y="24" width="89" height="12" uuid="052ae12e-9130-4192-b96f-6bab9be050f7"/>
+				<box rightPadding="5"/>
+				<textElement textAlignment="Right">
+					<font size="8" isBold="true"/>
+					<paragraph rightIndent="2"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{credit}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="12" width="64" height="12" uuid="741b32f0-e293-4567-8891-579f2712ef56"/>
+				<textElement>
+					<font size="8"/>
+					<paragraph leftIndent="4"/>
+				</textElement>
+				<text><![CDATA[Solde initiale]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="48" width="64" height="12" uuid="25fde3a3-e34e-46df-bbc8-6d1645a76bf1"/>
+				<textElement>
+					<font size="8"/>
+					<paragraph leftIndent="4"/>
+				</textElement>
+				<text><![CDATA[Solde final]]></text>
+			</staticText>
+			<textField pattern="#,##0.00" isBlankWhenNull="true">
+				<reportElement x="64" y="36" width="89" height="12" uuid="61d94891-f27c-4697-99ce-11699a853fab"/>
+				<box rightPadding="5"/>
+				<textElement textAlignment="Right">
+					<font size="8" isBold="true"/>
+					<paragraph rightIndent="2"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{debit}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="24" width="64" height="12" uuid="d4432990-3d86-4a6e-8cb4-eb23c722cf2f"/>
+				<textElement>
+					<font size="8"/>
+					<paragraph leftIndent="4"/>
+				</textElement>
+				<text><![CDATA[Entrée]]></text>
+			</staticText>
+			<textField pattern="#,##0.00" isBlankWhenNull="true">
+				<reportElement x="64" y="48" width="89" height="12" uuid="d35990cb-644e-49a1-b22d-34818a33b832"/>
+				<box rightPadding="5"/>
+				<textElement textAlignment="Right">
+					<font size="8" isBold="true"/>
+					<paragraph rightIndent="2"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{reste}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="0" y="0" width="153" height="12" uuid="c57d9649-c51e-4924-b855-15eddcc21c04"/>
+				<box>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8" isBold="true"/>
+					<paragraph leftIndent="2"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{idCaisselib}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>
