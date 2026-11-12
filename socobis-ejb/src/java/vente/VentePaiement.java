@@ -206,7 +206,7 @@ public class VentePaiement extends Vente{
                 return null;
             }
             double montantPaye = this.getMontantPayementRecu() - this.getMontantRetourner();
-            System.out.println("MONTANT RETORUNER ===> " + this.getMontantRetourner());
+            System.out.println("MONTANT RETOURNER ===> " + this.getMontantRetourner());
             System.out.println("NEW MONTANT PAYE =====>  " + montantPaye);
 
             MouvementCaisseMere mvtCaisseMere = new MouvementCaisseMere();
