@@ -16,6 +16,7 @@ import java.time.LocalDateTime;
 import utilitaire.Utilitaire;
 import utils.ConstanteStation;
 import utils.ConstanteEtatCustom;
+import java.time.LocalDate;
 
 
 public class Magasin extends ClassMAPTable{
@@ -167,11 +168,64 @@ public class Magasin extends ClassMAPTable{
         return "id";
     }
 
+    // @Override
+    // public void construirePK(Connection c) throws Exception {
+    //     this.preparePk("MAG", "GETSEQMAGASIN");
+    //     this.setId(makePK(c));
+    // }
+
+    // public String buildNewPK(){
+    //     LocalDate myObj = LocalDate.now();
+    //     //2026-11-12
+
+    //     String date = myObj.toString();
+    //     String seqTypeMag = getIdTypeMagasin();
+    //     String result = "MAG"+date+seqTypeMag;
+
+    //     return result;
+    // }
+
+    public String buildNewPK(){
+        LocalDate myObj = LocalDate.now();
+        //2026-11-12
+
+        String regex = "-";
+        String[] myArray = myObj.toString().split(regex);
+        String date;
+        date = myArray[0] + myArray[1] + myArray[2];
+
+        String seqTypeMag = getIdTypeMagasin();
+        String result = "MAG"+"-"+date+"-"+seqTypeMag+"-";
+
+        return result;
+    }
+
+    // public String buildNewPK(){
+    //     LocalDate myObj = LocalDate.now();
+    //     //2026-11-12
+
+    //     String regex = "-";
+    //     String[] myArray = myObj.toString().split(regex);
+    //     String date = myArray[0] + myArray[1] + myArray[2];
+
+    //     String seqTypeMag = getIdTypeMagasin();
+    //     char[] seqChar = seqTypeMag.toCharArray();
+
+    //     String finalSeq = "";
+    //     finalSeq = finalSeq.copyValueOf(seqChar, 6, 5);
+
+    //     String result = "MAG"+"-"+date+"-"+finalSeq+"-";
+
+    //     return result;
+    // }
+
     @Override
     public void construirePK(Connection c) throws Exception {
-        this.preparePk("MAG", "GETSEQMAGASIN");
+        String halfPK = this.buildNewPK();
+        this.preparePk(halfPK, "GETSEQMAGASIN");
         this.setId(makePK(c));
     }
+
     protected void controlerMagasin(Connection c) throws Exception {
         if (this.getIdTypeMagasin().compareToIgnoreCase(ConstanteStation.idTypeReservoir) == 0) {
             if (!this.getIdProduit().isEmpty()) { 
